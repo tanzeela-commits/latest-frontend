@@ -64,7 +64,7 @@ export default function JobPostModal({ open, handleClose }) {
       alert("all fields required");
     }
     try {
-      const check = await axios.post("https://bbuttshopjob.herokuapp.com/postjob", formData, {
+      const check = await axios.post("http://82.180.132.111:4500/postjob", formData, {
         headers: {
           Authorization: `Bearer ${JWTtoken}`,
         },

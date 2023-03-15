@@ -20,7 +20,7 @@ import {
 // import { useEffect } from "react";
 import DateInput from "../../components/common/menu/dateInput";
 import dayjs from "dayjs";
-const stringify = require("json-stringify-safe");
+// const stringify = require("json-stringify-safe");
 // custom inputs
 
 const EdithtmlForm = () => {
@@ -54,7 +54,7 @@ const EdithtmlForm = () => {
   const handleUpdate = (newValue) => {
     const updatedData = { ...data, field: newValue };
     setData(updatedData);
-    localStorage.setItem("data", stringify(updatedData));
+    // localStorage.setItem("data", stringify(updatedData));
   };
   return (
     <Box>
@@ -62,17 +62,19 @@ const EdithtmlForm = () => {
         <Card sx={{ p: 4 }}>
           <Box
             sx={{
+              height: 80,
+              width: 120,
               minHeight: "40vh",
               position: "relative",
               borderTopLeftRadius: 24,
               borderTopRightRadius: 24,
-              backgroundImage: `url(https://bbuttshopjob.herokuapp.com/${userimg})`,
+              backgroundImage: `url(http://82.180.132.111:4500/${userimg})`,
               backgroundPosition: "top left",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
             }}
           >
-            <Avatar
+            {/* <Avatar
               sx={{
                 height: 120,
                 width: 120,
@@ -85,9 +87,9 @@ const EdithtmlForm = () => {
                   lg: "translate(0%,50%)",
                 },
               }}
-            >
-              <img src={`https://bbuttshopjob.herokuapp.com/${userimg}`} alt="" />
-            </Avatar>
+            > */}
+            <img src={`http://82.180.132.111:4500/${userimg}`} alt="" />
+            {/* </Avatar> */}
             {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
           </Box>
           <CardContent>

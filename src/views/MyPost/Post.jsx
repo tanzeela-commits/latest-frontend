@@ -76,7 +76,7 @@ const Post = ({ handleClose }) => {
     // }
     try {
       const check = await axios.put(
-        `https://bbuttshopjob.herokuapp.com/post/63c1d744ac421a216d8ef7d7`,
+        `http://82.180.132.111:4500/post/63c1d744ac421a216d8ef7d7`,
         formData,
         config
       );
@@ -100,7 +100,7 @@ const Post = ({ handleClose }) => {
   const deleteuser = (id) => {
     axios
 
-      .delete(`https://bbuttshopjob.herokuapp.com/post/${id}`, config)
+      .delete(`http://82.180.132.111:4500/post/${id}`, config)
 
       .then((response) => {
         setDataa(response.data.id);
@@ -114,7 +114,7 @@ const Post = ({ handleClose }) => {
 
   const [data, setData] = useState([]);
   function getData() {
-    axios.get("https://bbuttshopjob.herokuapp.com/myposts", config).then((res) => {
+    axios.get("http://82.180.132.111:4500/myposts", config).then((res) => {
       console.log(res.data);
       setData(res.data);
     });
@@ -219,7 +219,7 @@ const Post = ({ handleClose }) => {
                   <CardMedia
                     component="img"
                     height="254"
-                    image={`https://bbuttshopjob.herokuapp.com/${eachdata.postimg}`}
+                    image={`http://82.180.132.111:4500/${eachdata.postimg}`}
                     alt={shopname}
                   />
                 </Box>

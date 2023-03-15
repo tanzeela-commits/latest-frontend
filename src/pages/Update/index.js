@@ -71,11 +71,7 @@ const index = ({ handleClose }) => {
     //   router.push(`/jobs`)
     // }
     try {
-      const check = await axios.put(
-        `https://bbuttshopjob.herokuapp.com/post/${id}`,
-        formData,
-        config
-      );
+      const check = await axios.put(`http://82.180.132.111:4500/post/${id}`, formData, config);
       console.log(check);
       // navigate("/session-timed-out");
       // console.log(sendForm);

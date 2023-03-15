@@ -49,7 +49,7 @@ const Register = () => {
 
   async function register() {
     try {
-      const check = await axios.post("https://bbuttshopjob.herokuapp.com/register", formData);
+      const check = await axios.post("http://82.180.132.111:4500/register", formData);
       console.log(check);
       alert("User Registered");
       setIsLoginFormOpen(true);

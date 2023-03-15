@@ -22,7 +22,7 @@ function Page() {
 
   async function getAllPosts() {
     try {
-      const response = await fetch("https://bbuttshopjob.herokuapp.com/posts", {
+      const response = await fetch("http://82.180.132.111:4500/posts", {
         method: "GET",
         mode: "cors",
         cache: "no-cache",

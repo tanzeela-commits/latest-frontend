@@ -75,7 +75,7 @@ const index = ({ handleClose }) => {
     // }
     try {
       const check = await axios.put(
-        `https://bbuttshopjob.herokuapp.com/post/${id}`,
+        `http://82.180.132.111:4500/post/${id}`,
         { jobname, salary, age, shoploc, shopname, workersReq, timing },
         config
       );
