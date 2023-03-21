@@ -72,16 +72,16 @@ export const Navbar = (props) => {
             <MenuIcon fontSize="small" />
           </IconButton>
           <Box sx={{ flexGrow: 1 }} />
-          <Button variant="contained" onClick={handleModalOpen}>
-            Post Job
+          <Button
+            sx={{
+              width: "150px",
+            }}
+            variant="contained"
+            onClick={handleModalOpen}
+          >
+            Post a Job
           </Button>
-          {/* <Tooltip title="Notifications">
-            <IconButton sx={{ ml: 1 }}>
-              <Badge badgeContent={4} color="primary" variant="dot">
-                <BellIcon fontSize="small" />
-              </Badge>
-            </IconButton>
-          </Tooltip> */}
+
           <Avatar
             onClick={() => setOpenAccountPopover(true)}
             ref={settingsRef}

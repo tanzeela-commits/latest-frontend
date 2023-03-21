@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-const MyPost = () => {
-  return (
-    <div>MyPost</div>
-  )
-}
+// const MyPost = () => {
+//   return (
+//     <div>MyPost</div>
+//   )
+// }
 
-export default MyPost
+// export default MyPost
