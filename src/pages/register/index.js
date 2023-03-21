@@ -154,6 +154,7 @@ const Register = () => {
               fullWidth
               country={"pk"}
               value={phoneno}
+              label="phone number"
               onChange={(phone) => setphoneno(phone)}
             />
             <TextField

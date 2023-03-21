@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { Box, Container, Grid } from "@mui/material";
 import { Layout } from "../../components/layout";
 import Post from "../../views/MyPost/Post";
@@ -12,17 +13,13 @@ const Page = () => (
       component="main"
       sx={{
         flexGrow: 1,
-        py: 8,
+        py: 6,
       }}
     >
       <Container maxWidth="xl">
         <Grid container spacing={4}>
           {[1].map((item) => {
-            return (
-              <Grid item key={item} xs={12} md={6} lg={4} sx={{ alignItems: "start" }}>
-                <Post />
-              </Grid>
-            );
+            return <Post />;
           })}
         </Grid>
       </Container>

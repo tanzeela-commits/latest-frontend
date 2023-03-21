@@ -46,6 +46,7 @@ const index = ({ handleClose }) => {
   const [age, setage] = useState();
   const [experience, setexperience] = useState();
   const [description, setdescription] = useState();
+  const [isVisible, setIsVisible] = useState(false);
   // const JWTtoken = window.localStorage.getItem("JWTtoken");/
   const formData = new FormData();
   formData.append("postimg", postimg);
@@ -201,9 +202,9 @@ const index = ({ handleClose }) => {
                 <Button
                   variant="outlined"
                   sx={{ color: "text.disabled", borderColor: "text.disabled" }}
-                  onClick={handleClose}
+                  onClick={() => setIsVisible(!isVisible)}
                 >
-                  Cancel
+                  {isVisible ? "Hide Content" : "Show Content"}
                 </Button>
                 {/* <button onClick={editUserDetails}>post</button> */}
                 <Button variant="contained" onClick={() => update(id)}>

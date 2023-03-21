@@ -13,8 +13,6 @@ import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import Tooltip from "@mui/material/Tooltip";
 // icons
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
@@ -25,7 +23,6 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 export default function PostCard({ post }) {
   const [name, setName] = useState("");
-  // const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
@@ -45,23 +42,18 @@ export default function PostCard({ post }) {
     setQualification(_doc.qualification);
     setuserimg(_doc.userimg);
     setDob(dob);
-    // moment().format("MMMM Do YYYY, h:mm:ss a");
   }, []);
   const router = useRouter();
   const token = window.localStorage.getItem("JWTtoken");
   var { _doc } = jwt_decode(token);
   const {
-    img,
     jobname,
     salary,
     shoploc,
     shopname,
     timing,
-    user_id,
-    user_email,
     username,
     workersReq,
-    liked,
     description,
     receiverEmail,
     age,
@@ -72,8 +64,6 @@ export default function PostCard({ post }) {
     try {
       const check = await axios.post(
         "http://82.180.132.111:4500/applyjob",
-        //  {"receiverEmail": "abc13@gmail.com",},
-        // post,
         { receiverEmail, name, email, address, qualification, dob, city, phoneno },
 
         {
@@ -84,15 +74,11 @@ export default function PostCard({ post }) {
       );
       console.log(check);
       alert("Apply successfully");
-      // router.push(`/my_posts`)
-      // navigate("/session-timed-out");
-      // console.log(sendForm);
     } catch (error) {
       console.log("Error", error);
     }
   }
 
-  // console.log("POST", post);/
   return (
     <Card
       sx={{
@@ -106,7 +92,6 @@ export default function PostCard({ post }) {
             <Avatar
               sx={{ bgcolor: "primary" }}
               aria-label="user-Pic"
-              // src={`https://bbuttshopjob.herokuapp.com/${userpic}`}
               src={`http://82.180.132.111:4500/${userpic}`}
               alt={username}
             />
@@ -116,10 +101,8 @@ export default function PostCard({ post }) {
             </Avatar>
           )
         }
-        // action={<DotMenu options={[{ label: "Report", icon: <FlagIcon /> }]} />}
         title={username}
         subheader={receiverEmail}
-        // subheader1={user_email}
       />
       <CardContent>
         <Box>
@@ -154,7 +137,12 @@ export default function PostCard({ post }) {
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography variant="body2" sx={{ color: "primary.dark" }}>
+              <Typography
+                variant="body2"
+                height="50px"
+                overflow="auto"
+                sx={{ color: "primary.dark" }}
+              >
                 {shoploc}
               </Typography>
             </Grid>
@@ -219,14 +207,18 @@ export default function PostCard({ post }) {
               </Typography>
             </Grid>
           </Grid>
-        </Box>
-        <Box sx={{ mt: 6 }}>
-          <Typography variant="body2" sx={{ color: "primary.dark", fontWeight: 700 }}>
-            Description:
-          </Typography>
-          <Typography variant="body2" color="primary.dark">
-            {description}
-          </Typography>
+          <Grid container>
+            <Grid item xs={6}>
+              <Typography variant="body2" sx={{ color: "primary.dark", fontWeight: 700 }}>
+                Description:
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="body2" color="primary.dark" height="50px" overflow="auto">
+                {description}
+              </Typography>
+            </Grid>
+          </Grid>
         </Box>
       </CardContent>
 

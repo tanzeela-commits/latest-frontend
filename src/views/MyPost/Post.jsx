@@ -3,6 +3,7 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
+
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -26,6 +27,8 @@ import {
   // Button,
   // Stack,
 } from "@mui/material";
+import { UpdatePost } from "../../components";
+
 const Post = ({ handleClose }) => {
   const [jobname, setjobname] = useState("");
   const [shopname, setshopname] = useState("");
@@ -34,11 +37,15 @@ const Post = ({ handleClose }) => {
   const [salary, setsalary] = useState("");
   const [timing, settiming] = useState("");
   const [postimg, setpostimg] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [postId, setPostId] = useState(null);
   // console.log(postimg)
   const [age, setage] = useState("");
   const [experience, setexperience] = useState("");
   const [description, setdescription] = useState("");
   // const JWTtoken = window.localStorage.getItem("JWTtoken");/
+  const router = useRouter();
+
   const formData = new FormData();
   formData.append("postimg", postimg);
   formData.append("jobname", jobname);
@@ -61,10 +68,10 @@ const Post = ({ handleClose }) => {
     padding: "50px",
     p: 4,
   };
-  const [showModal, setShowModal] = useState(false);
-  async function openModal() {
-    setShowModal(true);
-  }
+  // const [showModal, setShowModal] = useState(false);
+  // async function openModal() {
+  //   setShowModal(true);
+  // }
   async function update() {
     // if(!postimg||!jobname||!shopname||!shoploc||!workersReq||!salary||!timing)
     // {
@@ -87,7 +94,6 @@ const Post = ({ handleClose }) => {
       console.log("Error", error);
     }
   }
-  const router = useRouter();
   // const {id} = useParams()
   const JWTtoken = window.localStorage.getItem("JWTtoken");
   const config = {
@@ -104,19 +110,21 @@ const Post = ({ handleClose }) => {
 
       .then((response) => {
         setDataa(response.data.id);
+        router.reload();
+
         console.log("deleted successfully!");
         alert("deleted successfully!");
       });
   };
   useEffect(() => {
     getData();
-  }, [deleteuser]);
+  }, [showModal]);
 
   const [data, setData] = useState([]);
   function getData() {
     axios.get("http://82.180.132.111:4500/myposts", config).then((res) => {
       console.log(res.data);
-      setData(res.data);
+      setData([...res.data]);
     });
   }
   useEffect(() => {
@@ -220,6 +228,7 @@ const Post = ({ handleClose }) => {
                     component="img"
                     height="254"
                     image={`http://82.180.132.111:4500/${eachdata.postimg}`}
+                    // image={`http://localhost:5000/${eachdata.postimg}`}
                     alt={shopname}
                   />
                 </Box>
@@ -228,7 +237,7 @@ const Post = ({ handleClose }) => {
                 <Button sx={{ textTransform: "uppercase" }}>applications</Button>
                 <Button
                   sx={{ textTransform: "uppercase" }}
-                  onClick={() => router.push(`/Update/${eachdata._id}`)}
+                  onClick={() => (setPostId(eachdata?._id), setShowModal(true))}
                 >
                   Update
                 </Button>
@@ -244,6 +253,7 @@ const Post = ({ handleClose }) => {
           </>
         );
       })}
+      {showModal ? <UpdatePost id={postId} closeModal={() => setShowModal(false)} /> : null}
     </>
   );
 };

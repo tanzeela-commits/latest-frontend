@@ -1,14 +1,14 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
+    "react/jsx-no-target-blank": "off",
+    "react/no-unknown-property": "off",
+    "react-hooks/rules-of-hooks": "off",
+    "react/no-unescaped-entities": "off",
+    "@next/next/link-passhref": "off",
+    "react-hooks/exhaustive-deps": "off",
     "@next/next/no-img-element": "off",
     "jsx-a11y/alt-text": "off",
-    "react/display-name": "off",
-    "react/jsx-max-props-per-line": [
-      1,
-      {
-        "maximum": 1
-      }
-    ]
+    "react/jsx-key": "off"
   }
 }

@@ -37,7 +37,8 @@ const style = {
   p: 4,
 };
 
-const index = ({ handleClose }) => {
+const UpdatePost = ({ id, closeModal }) => {
+  console.log(id, "ok");
   const [jobname, setjobname] = useState();
   const [shopname, setshopname] = useState();
   const [shoploc, setshoploc] = useState();
@@ -50,15 +51,17 @@ const index = ({ handleClose }) => {
   const [age, setage] = useState();
   const [experience, setexperience] = useState();
   const [description, setdescription] = useState();
+
   // const JWTtoken = window.localStorage.getItem("JWTtoken");/
   const formData = new FormData();
   formData.append("postimg", postimg);
-  formData.append("jobname", jobname);
-  formData.append("shopname", shopname);
-  formData.append("shoploc", shoploc);
-  formData.append("workersReq", workersReq);
-  formData.append("salary", salary);
-  formData.append("timing", timing);
+  // formData.append("jobname", jobname)
+  // formData.append("shopname", shopname)
+  // formData.append("shoploc", shoploc)
+  // formData.append("workersReq", workersReq)
+  // formData.append("salary", salary)
+  // formData.append("timing", timing)
+
   const JWTtoken = window.localStorage.getItem("JWTtoken");
   const config = {
     headers: {
@@ -66,7 +69,7 @@ const index = ({ handleClose }) => {
     },
   };
   const set = useParams();
-
+  console.log(id, "ok");
   async function updatePic(id) {
     console.log(set);
     // if(!postimg||!jobname||!shopname||!shoploc||!workersReq||!salary||!timing)
@@ -76,14 +79,17 @@ const index = ({ handleClose }) => {
     // else{
     //
     // }
+
+    console.log(set);
     try {
-      const check = await axios.put(
-        `http://82.180.132.111/post/${id}`,
-        { jobname, shoploc, shopname, workersReq, salary, timing },
+      const check = await axios.post(
+        `http://82.180.132.111:4500/setImage/${id}`,
+
+        formData,
         config
       );
       alert("record updated successfully");
-      Router.push(`/my_posts`);
+      // Router.push(`/my_posts`);
       console.log(check);
       // navigate("/session-timed-out");
       // console.log(sendForm);
@@ -102,10 +108,15 @@ const index = ({ handleClose }) => {
     //
     // }
     try {
-      const check = await axios.post(`http:82.180.132.111:4500/setImage/${id}`, formData, config);
+      const check = await axios.put(
+        `http://82.180.132.111:4500/post/${id}`,
+        { jobname, shoploc, shopname, workersReq, salary, timing },
+        config
+      );
       alert("record updated successfully");
       // Router.push(`/my_posts`);
       console.log(check);
+      closeModal();
       // navigate("/session-timed-out");
       // console.log(sendForm);
     } catch (error) {
@@ -114,7 +125,6 @@ const index = ({ handleClose }) => {
   }
   const [dataa, setDataa] = useState("");
   const Router = useRouter();
-  const id = Router.query.id;
   return (
     <div>
       {isVisible && (
@@ -122,7 +132,6 @@ const index = ({ handleClose }) => {
           aria-labelledby="Job-title"
           aria-describedby="job-inputs"
           open={open}
-          onClose={handleClose}
           closeAfterTransition
           BackdropComponent={Backdrop}
           BackdropProps={{
@@ -218,7 +227,7 @@ const index = ({ handleClose }) => {
               <Grid item xs={12}>
                 <input type="file" onChange={(e) => setpostimg(e.target.files[0])} />
               </Grid>
-              {/* <button onClick={updatePic}>update</button> */}
+              <button onClick={() => updatePic(id, Router.push("/my_posts"))}>Update</button>
               <Grid item xs={12}>
                 <TextField
                   id="outlined-basic"
@@ -236,13 +245,13 @@ const index = ({ handleClose }) => {
                   <Button
                     variant="outlined"
                     sx={{ color: "text.disabled", borderColor: "text.disabled" }}
-                    onClick={() => setIsVisible(!isVisible, Router.push("/my_posts"))}
+                    onClick={closeModal}
                   >
                     {isVisible ? "Close" : ""}
                   </Button>
                   {/* <button onClick={editUserDetails}>post</button> */}
                   <Button variant="contained" onClick={() => update(id, Router.push("/my_posts"))}>
-                    update
+                    Save
                   </Button>
                 </Stack>
               </Grid>
@@ -254,4 +263,4 @@ const index = ({ handleClose }) => {
   );
 };
 
-export default index;
+export default UpdatePost;

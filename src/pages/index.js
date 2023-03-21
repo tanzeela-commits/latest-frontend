@@ -84,7 +84,7 @@ const Page = () => {
               >
                 <Typography variant="h3" component="h1" sx={{ maxWidth: "650px" }}>
                   <Box component="span" sx={{ display: "block", color: "neutral.100" }}>
-                    Defeat the unemployment.
+                    THE FINAL SOLUTION FOR UNEMPLOYMENT IS WORK
                   </Box>
                   Let’s start finding the Jobs quickly and easily that suits to you and also near
                   you in just few clicks.{" "}
@@ -120,9 +120,6 @@ const Page = () => {
                   pr: 2,
                 }}
               >
-                {/* <Button variant="contained" sx={{ zIndex: 10, whiteSpace: "nowrap" }}>
-                  Post Job
-                </Button> */}
                 <Button variant="text" sx={{ zIndex: 10 }} onClick={openLogin}>
                   Log in / sign up
                 </Button>
@@ -152,9 +149,6 @@ const Page = () => {
                     pr: 2,
                   }}
                 >
-                  {/* <Button variant="contained" sx={{ zIndex: 10, whiteSpace: "nowrap" }}>
-                    Post Job
-                  </Button> */}
                   <Button variant="text" sx={{ zIndex: 10 }} onClick={openLogin}>
                     Log in / sign up
                   </Button>
@@ -181,10 +175,13 @@ const Page = () => {
                   }}
                 >
                   <Box component="span" sx={{ display: "block", color: "neutral.50" }}>
-                    Defeat the unemployment.
+                    THE FINAL SOLUTION FOR UNEMPLOYMENT IS WORK
                   </Box>
-                  Let’s start finding the Jobs quickly and easily that suits to you and also near
-                  you in just few clicks.{" "}
+                  "Welcome to our website dedicated to defeating unemployment! Here you will find
+                  valuable resources, information, and strategies to help you overcome unemployment
+                  and achieve success in your career. We are committed to providing you with the
+                  tools and support you need to thrive in today's job market. Let's work together to
+                  overcome unemployment and achieve your career goals."
                 </Typography>
                 <Button
                   size="medium"
@@ -215,7 +212,5 @@ const Page = () => {
     </>
   );
 };
-
-// Page.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default Page;

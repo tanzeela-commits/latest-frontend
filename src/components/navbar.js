@@ -31,11 +31,14 @@ export const Navbar = (props) => {
   const [open, setOpen] = useState(false);
   const handleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
+  const token = window.localStorage.getItem("JWTtoken");
 
+  var { _doc } = jwt_decode(token);
+  const userimg = _doc.userimg;
+  console.log(_doc.userimg);
   useEffect(() => {
     const token = window.localStorage.getItem("JWTtoken");
     var { _doc } = jwt_decode(token);
-    console.log({ _doc });
     setUserName(_doc.name);
   }, []);
 
@@ -93,7 +96,12 @@ export const Navbar = (props) => {
             }}
             // src="/static/images/avatars/avatar_1.png"
           >
-            <UserCircleIcon fontSize="small" />
+            <img
+              src={`http://82.180.132.111:4500/${userimg}`}
+              height="40px"
+              width="40px"
+              alt="loading"
+            />
           </Avatar>
         </Toolbar>
       </NavbarRoot>

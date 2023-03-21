@@ -19,64 +19,36 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import { useState } from "react";
 
 export const Sidebar = (props) => {
+  const [openone, setOpenone] = useState(false);
+  const handleModalOpen = () => setOpen(true);
+  const handleModalClose = () => setOpen(false);
+  const items = [
+    {
+      href: "/jobs",
+      icon: <WorkIcon fontSize="small" />,
+      title: "Find Jobs",
+    },
 
-const items = [
-  {
-    href: "/jobs",
-    icon: <WorkIcon fontSize="small" />,
-    title: "Find Jobs",
-  },
-  // {
-  //   href: "/Update",
-  
-  // },
-  
-  {
-    href: "/my_posts",
-    icon: <PagesIcon fontSize="small" />,
-    title: "My Posts",
-  },
-  {
-    href: "/profile",
-    icon: <PersonIcon fontSize="small" />,
-    title: "Profile",
-  },
-  // {
-  //   href: "/account",
-  //   icon: <PermIdentityIcon fontSize="small" />,
-  //   title: "Account",
-  // },
-  {
-    href: "/settings",
-    icon: <CogIcon fontSize="small" />,
-    title: "Settings",
-  },
-  // {
-  //   href: "/login",
-  //   // icon: <LockIcon fontSize="small" />,
-  //   // title: "Login",
-  // },
-  // {
-  //   href: "/register",
-  //   icon: <UserAddIcon fontSize="small" />,
-  //   title: "Register",
-  // },
-  // {
-  //   href: "/404",
-  //   icon: <XCircleIcon fontSize="small" />,
-  //   title: "Error",
-  // },
-];
-// function getData() {
-//   axios.get("http://localhost:5000/myposts", config).then((res) => {
-//     console.log(res.data);
-//     setData(res.data);
-//   });
-// }
-// useEffect(() => {
-//   getData();
-// }, []);
+    {
+      href: "/my_posts",
+      icon: <PagesIcon fontSize="small" />,
+      title: "My Posts",
+    },
+    {
+      href: "/profile",
+      icon: <PersonIcon fontSize="small" />,
+      title: "Profile",
+    },
 
+    {
+      href: "/settings",
+      icon: <CogIcon fontSize="small" />,
+      title: "Settings",
+    },
+  ];
+  <Button variant="contained" onClick={handleModalOpen}>
+    Post Job
+  </Button>;
   const { open, onClose } = props;
   const router = useRouter();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"), {
@@ -84,23 +56,18 @@ const items = [
     noSsr: false,
   });
 
-  useEffect(
-    () => {
-      if (!router.isReady) {
-        return;
-      }
+  useEffect(() => {
+    if (!router.isReady) {
+      return;
+    }
 
-      if (open) {
-        onClose?.();
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [router.asPath]
-  );
+    if (open) {
+      onClose?.();
+    }
+  }, [router.asPath]);
 
   const content = (
     <>
-     
       <Box
         sx={{
           display: "flex",

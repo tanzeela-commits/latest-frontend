@@ -72,10 +72,6 @@ export default function JobPostModal({ open, handleClose }) {
       });
       console.log(check);
       alert("job posted successfully");
-      {
-        handleClose;
-      }
-
       router.push(`/my_posts`);
       // navigate("/session-timed-out");
       // console.log(sendForm);
